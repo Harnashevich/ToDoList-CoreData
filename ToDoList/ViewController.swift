@@ -16,6 +16,11 @@ final class TableViewController: UITableViewController {
     
     // MARK: - Lifecycle
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -60,6 +65,24 @@ final class TableViewController: UITableViewController {
         alertController.addAction(cancelAction)
         
         present(alertController, animated: true)
+    }
+    
+    @IBAction func clearMyTasks(_ sender: UIBarButtonItem) {
+        let context = getContext()
+        let fetchRequest: NSFetchRequest<MyTask> = MyTask.fetchRequest()
+        if let objects = try? context.fetch(fetchRequest) {
+            for object in objects {
+                context.delete(object)
+            }
+        }
+        
+        do {
+            try context.save()
+            tasks.removeAll()
+            tableView.reloadData()
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
     }
 }
 
