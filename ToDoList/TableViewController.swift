@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TableViewController.swift
 //  ToDoList
 //
 //  Created by Andrei Harnashevich on 28.05.24.
@@ -15,12 +15,7 @@ final class TableViewController: UITableViewController {
     var tasks: [MyTask] = []
     
     // MARK: - Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
+ 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
